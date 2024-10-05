@@ -4,9 +4,7 @@ import com.spring.learn.concepts.dto.internal.UserDto;
 import com.spring.learn.concepts.dto.request.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Component;
 
-@Component
 @Mapper
 public interface UserMapper {
 
