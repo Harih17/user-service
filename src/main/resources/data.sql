@@ -1,0 +1,1 @@
+INSERT INTO user_details VALUES (01, 'Hari', 28, '17-01-1997', 'Arasur', '12345', 'abc@gmail.com');
