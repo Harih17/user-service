@@ -9,8 +9,8 @@ public class UserDto {
 
     private String name;
     private int age;
-    private String dateOfBirth;
+    private String birthDate;
     private String address;
     private String phoneNumber;
-    private String email;
+    private String emailAddress;
 }
