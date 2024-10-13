@@ -1,9 +1,11 @@
 package com.spring.learn.concepts.controller;
 
 import com.spring.learn.concepts.dto.internal.UserDto;
-import com.spring.learn.concepts.dto.request.User;
+import com.spring.learn.concepts.dto.request.UserRequest;
 import com.spring.learn.concepts.dto.response.ResponseMessage;
 import com.spring.learn.concepts.mapper.UserMapper;
+import com.spring.learn.concepts.mapper.response.UserResponseMapper;
+import com.spring.learn.concepts.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-    @PostMapping
-    public ResponseEntity<ResponseMessage> createUser(@RequestBody @Valid User user) {
+    public final UserService userService;
 
-      log.info("[UserController] Inside createUser method, Request : {}", user);
-      UserDto userDto = UserMapper.INSTANCE.mapUserToUserDto(user);
-      log.info("[UserController] User Name: {}", userDto.getName());
-      return null;
+    @PostMapping
+    public ResponseEntity<ResponseMessage> createUser(@RequestBody @Valid UserRequest user) {
+
+        log.info("[UserController] Inside createUser method, Request : {}", user);
+        UserDto userDto = UserMapper.INSTANCE.mapUserToUserDto(user);
+        log.info("[UserController] User Name: {}", userDto.getName());
+        Long userId = userService.processUserInformation(userDto);
+        return ResponseEntity.ok(UserResponseMapper.formatResponseMessage(userId));
 
     }
 
